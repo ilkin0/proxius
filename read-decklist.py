@@ -1,12 +1,18 @@
 from decouple import config
 
 file = open(config("DECKLIST"), "r")
+dList = []
 
 
-def readDecklist(file):
+def read_deck(file):
     if file.mode == "r":
-        contents = file.read()
-        print(contents)
+        lines = (line.rstrip() for line in file)
+        lines = (line for line in lines if line)
+        for line in lines:
+            if not line.startswith('#'):
+                line = line.rstrip()
+                dList.append(line)
+        # print(dList)
 
 
-readDecklist(file)
+# read_deck(file)
